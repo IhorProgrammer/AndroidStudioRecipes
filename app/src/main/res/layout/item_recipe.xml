@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_weight="1"
+    android:layout_margin="8dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/item_background"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        />
+
+    <TextView
+        android:id="@+id/recipeTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        android:text=""
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="10dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/recipeDetail"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingTop="8dp"
+        android:text=""
+        android:gravity="center_vertical"
+        android:textSize="14sp"
+        android:layout_marginHorizontal="10dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/detailsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/item_recipe_btn"
+        app:backgroundTint="@null"
+        android:background="@color/item_recipe_btn"
+        android:textColor="@color/white" />
+
+</LinearLayout>

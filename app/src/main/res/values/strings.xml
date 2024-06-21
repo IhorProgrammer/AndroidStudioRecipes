@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Recipes</string>
+
+    <!-- region activity_main -->
+    <string name="main_page">Детальніше</string>
+    <string name="main_search_hint">Пошук за назвою</string>
+    <string name="main_search_btn">Пошук</string>
+
+    <!-- endregion -->
+
+    <!-- region Item recipe -->
+    <string name="item_recipe_btn">Детальніше</string>
+    <!-- endregion -->
+
+    <!-- region activity_recipe -->
+    <string name="recipe_activity_short_info">Опис: </string>
+    <string name="recipe_activity_servings">Кількість порцій: </string>
+    <string name="recipe_activity_preparation_time">Час приготування: </string>
+    <string name="recipe_activity_description">Опис готування: </string>
+    <string name="recipe_activity_time">хв: </string>
+    <string name="recipe_activity_tags">Теги: </string>
+    <string name="recipe_activity_ingredients">Інгрідієнти: </string>
+
+    <!-- endregion -->
+</resources>
