@@ -1,4 +1,4 @@
-package step.learning.recipes;
+package step.learning.recipes.recipes;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -6,22 +6,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import step.learning.recipes.recipes.RecipeShortItem;
-import step.learning.recipes.recipes.RecipesResponse;
-
-public class RecipeResponse {
+public class RecipesResponse {
     private int status;
-    private RecipeFullItem data;
+    private List<RecipeShortItem> data;
 
-    public static RecipeResponse fromJsonString( String jsonString ) throws IllegalAccessException {
+    public static RecipesResponse fromJsonString(String jsonString ) throws IllegalAccessException {
         try {
             JSONObject root = new JSONObject( jsonString );
             int status = root.getInt("status");
-            JSONObject recipe = root.getJSONObject( "data" );
+            JSONArray arr = root.getJSONArray( "data" );
 
-            RecipeFullItem data = RecipeFullItem.fromJson(recipe);
+            List<RecipeShortItem> data = new ArrayList<>();
+            for (int i = 0; i < arr.length(); i++) {
+                data.add(RecipeShortItem.fromJson(arr.getJSONObject(i)));
+            }
 
-            RecipeResponse response = new RecipeResponse();
+            RecipesResponse response = new RecipesResponse();
             response.setStatus(status);
             response.setData(data);
             return response;
@@ -40,11 +40,12 @@ public class RecipeResponse {
         this.status = status;
     }
 
-    public RecipeFullItem getData() {
+    public List<RecipeShortItem> getData() {
         return data;
     }
 
-    public void setData(RecipeFullItem data) {
+    public void setData(List<RecipeShortItem> data) {
         this.data = data;
     }
 }
+

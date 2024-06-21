@@ -1,5 +1,4 @@
-package step.learning.recipes;
-
+package step.learning.recipes.recipes;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -9,16 +8,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import step.learning.recipes.RecipeFullItem;
-import step.learning.recipes.recipes.RecipesResponse;
-
-public class RecipeService {
+public class RecipesService {
     private static final String BASE_URL = "https://ittabirquest.000webhostapp.com/api/";
     private final  byte[] buffer = new byte[8096];
 
 
-    public String load( String idRecipe ) {
-        String url =  BASE_URL + "recipe?id=" + idRecipe;
+    public String load( String params ) {
+        String url =  BASE_URL + "recipes";
+        if( !params.isEmpty() ) url += "?name=" + params;
 
         try (InputStream recipeStream = new URL( url ).openStream(); ) {
             String response = readString( recipeStream );
@@ -42,16 +39,19 @@ public class RecipeService {
         return res;
     }
 
-    public RecipeFullItem processResponse (String response ) {
-        RecipeFullItem recipeItems = new RecipeFullItem();
+    public List<RecipeShortItem> processResponse (String response ) {
+        List<RecipeShortItem> recipeItems = new ArrayList<>();
         try {
-            RecipeResponse recipeResponse = RecipeResponse.fromJsonString( response );
-            recipeItems = recipeResponse.getData();
-
+            RecipesResponse chatResponse = RecipesResponse.fromJsonString( response );
+            for ( RecipeShortItem recipe: chatResponse.getData()) {
+                recipeItems.add( recipe ) ;
+            }
         } catch (IllegalAccessException ex) {
             Log.e( "RecipeService:processResponse", ex.getMessage() == null ?  ex.getClass().getName() : ex.getMessage());
         }
         return recipeItems;
     }
 
+
 }
+

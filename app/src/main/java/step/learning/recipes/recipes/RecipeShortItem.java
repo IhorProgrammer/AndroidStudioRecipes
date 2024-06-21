@@ -1,35 +1,30 @@
-package step.learning.recipes;
+package step.learning.recipes.recipes;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-public class RecipeItem {
+public class RecipeShortItem {
     private String title;
     private String shortInfo;
     private int id;
     private String imageURL;
 
-    public RecipeItem(String title, String shortInfo, int id, String imageURL) {
+    public RecipeShortItem(String title, String shortInfo, int id, String imageURL) {
         this.title = title;
         this.shortInfo = shortInfo;
         this.id = id;
         this.imageURL = imageURL;
     }
 
-    public RecipeItem() {}
+    public RecipeShortItem() {}
 
-    public static RecipeItem fromJson(JSONObject jsonObject) throws IllegalArgumentException {
+    public static RecipeShortItem fromJson(JSONObject jsonObject) throws IllegalArgumentException {
         try {
             int id = jsonObject.getInt("id");
             String title = jsonObject.getString("title");
             String shortInfo = jsonObject.getString("short_info");
             String imageUrl = jsonObject.getString("image_url");
 
-            RecipeItem recipeItem = new RecipeItem();
+            RecipeShortItem recipeItem = new RecipeShortItem();
             recipeItem.setId( id );
             recipeItem.setTitle( title );
             recipeItem.setShortInfo( shortInfo );

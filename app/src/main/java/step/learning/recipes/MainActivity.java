@@ -1,7 +1,6 @@
 package step.learning.recipes;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -20,13 +19,17 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import step.learning.recipes.recipes.RecipeAdapter;
+import step.learning.recipes.recipes.RecipeShortItem;
+import step.learning.recipes.recipes.RecipesService;
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecipeAdapter recipeAdapter;
-    private RecipeService recipeService;
+    private RecipesService recipeService;
     ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    private List<RecipeItem> recipeList;
+    private List<RecipeShortItem> recipeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recipeService = new RecipeService();
+        recipeService = new RecipesService();
         // Dummy data
         recipeList = new ArrayList<>();
 //        recipeList.add(new RecipeItem(1, "Тайське карі з куркою", R.drawable.sample_image));
@@ -71,13 +74,12 @@ public class MainActivity extends AppCompatActivity {
                 .thenAcceptAsync( this::displayRecipeItem );
     }
 
-    private void displayRecipeItem(List<RecipeItem> recipeItems) {
+    private void displayRecipeItem(List<RecipeShortItem> recipeItems) {
         runOnUiThread( () -> {
             recipeList = recipeItems;
             recipeAdapter.setRecipeList(recipeList);
             recipeAdapter.notifyDataSetChanged();
         });
-
     }
 
 

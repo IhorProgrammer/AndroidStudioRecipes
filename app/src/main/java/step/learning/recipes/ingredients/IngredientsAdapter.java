@@ -1,4 +1,4 @@
-package step.learning.recipes;
+package step.learning.recipes.ingredients;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import java.util.List;
+
+import step.learning.recipes.R;
 
 public class IngredientsAdapter extends RecyclerView.Adapter<IngredientsAdapter.ViewHolder> {
     private List<IngredientsItem> ingredientsList;

@@ -1,6 +1,4 @@
-package step.learning.recipes;
-
-import static androidx.core.content.ContextCompat.startActivity;
+package step.learning.recipes.recipes;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,16 +16,19 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
-    private List<RecipeItem> recipeList;
+import step.learning.recipes.R;
+import step.learning.recipes.RecipeActivity;
 
-    public void setRecipeList(List<RecipeItem> recipeList) {
+public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder> {
+    private List<RecipeShortItem> recipeList;
+
+    public void setRecipeList(List<RecipeShortItem> recipeList) {
         this.recipeList = recipeList;
     }
 
     private Context context;
 
-    public RecipeAdapter(List<RecipeItem> recipeList, Context context) {
+    public RecipeAdapter(List<RecipeShortItem> recipeList, Context context) {
         this.recipeList = recipeList;
         this.context = context;
     }
@@ -41,7 +42,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        RecipeItem recipe = recipeList.get(position);
+        RecipeShortItem recipe = recipeList.get(position);
         holder.recipeTitle.setText(recipe.getTitle());
         holder.recipeDetail.setText(recipe.getShortInfo());
         // Отримання зображення з URL та вставка його у ImageView
@@ -53,8 +54,7 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ViewHolder
 
         holder.detailsButton.setOnClickListener(v -> {
             // Handle details button click
-            Intent intent = new Intent(context, RecipeActivity.class);
-            context.startActivity(intent);
+            RecipeActivity.start(context, recipe.getId() + "" );
         });
     }
 
